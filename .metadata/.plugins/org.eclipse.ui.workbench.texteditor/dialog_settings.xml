@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="cidadeRepository"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="cidadeRepository"/>
+			<item value="cestaura"/>
+			<item value="cesta"/>
+			<item value="ozinha"/>
+			<item value="&apos;"/>
+			<item value="cozinha"/>
+			<item value="Cozinha"/>
+			<item value="FormasPagamento"/>
+			<item value="maven"/>
+			<item value="dev"/>
+		</list>
+		<list key="replacehistory">
+			<item value="estaurante"/>
+			<item value="formaPagamento"/>
+			<item value="cidade"/>
+			<item value="Cidade"/>
+			<item value="Estado"/>
+			<item value="estado"/>
+			<item value="formasPagamento"/>
+			<item value="FormasPagamento"/>
+			<item value="permissao"/>
+			<item value="Permissao"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="936"/>
+		<item key="DIALOG_Y_ORIGIN" value="94"/>
+		<item key="DIALOG_WIDTH" value="363"/>
+		<item key="DIALOG_HEIGHT" value="440"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+</section>

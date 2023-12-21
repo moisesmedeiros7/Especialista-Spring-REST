@@ -1,0 +1,28 @@
+package com.algaworks.algafood.domain.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Repository;
+
+import com.algaworks.algafood.domain.model.Cozinha;
+
+@Repository
+public interface CozinhaRepository extends CustomJpaRepository<Cozinha, Long> {
+
+	/* 1. Prefixo (ex. find) + By + atributo que deseja pesquisar (Prefixos+By.: findBy, queryBy, getBy, readBy, streamBy)
+	   2. Pode-se colocar mais algum tetxto entre prefixo e By
+	   e o nome do tributo. Ex: finfByTodosNome
+	   3. Equivalente ao like %, vai trazer qualquer parte do nome devido keyword Containing
+	   
+	   Material sobre keyword = https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html
+	 */
+	List<Cozinha> findUmByNome(String nome); /*Traz List de Cozinhas com nome exato */ 
+	
+	Optional<Cozinha> findByNome (String nome); /*Traz um Optional de Cozinha com nome exato */
+ 	
+	List<Cozinha> findByNomeContaining (String nome); /*Traz List de Cozinhas com parte do nome - keywords -> Containing*/
+	
+	boolean existsByNome(String nome); // prefixo exists retorna um booleano sobre a existencia do nome
+	
+}
