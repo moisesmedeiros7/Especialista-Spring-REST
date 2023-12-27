@@ -18,7 +18,9 @@ RestauranteRepositoryQueries, JpaSpecificationExecutor<Restaurante>   {
 	// esse restaurante não será retornado usando JOIN FETCH r.formasPagamento.
 	// Para resolver isso, temos que usar LEFT JOIN FETCH r.formasPagamento
 //	@Query("from Restaurante r join fetch r.cozinha join fetch r.formasPagamento")
-	@Query("from Restaurante r join fetch r.cozinha left join fetch r.formasPagamento")
+//	@Query("from Restaurante r join fetch r.cozinha left join fetch r.formasPagamento")
+	
+	@Query("from Restaurante r join fetch r.cozinha") // <- sem pegar forma de pagamento
 	List<Restaurante> findAll(); // implementar esse método vai fazer cm que se tenha menos conultas no BD devido as instancias FK
 	
 	

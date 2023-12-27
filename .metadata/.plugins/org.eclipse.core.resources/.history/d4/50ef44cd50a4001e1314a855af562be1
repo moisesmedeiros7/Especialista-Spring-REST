@@ -1,0 +1,70 @@
+package com.algaworks.algafood.domain.model;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+public class Pedido {
+	
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column (nullable = false)
+	private BigDecimal subtotal; 
+
+	@Column (nullable = false)
+	private BigDecimal taxaFrete;
+	
+	@Column (nullable = false)
+	private BigDecimal valorTotal;
+	
+	@UpdateTimestamp  //cria automaticamente o datetime
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime dataCriacao;
+	
+	@Column(columnDefinition = "datetime")
+	private LocalDateTime dataConfirmacao;
+	
+	@Column(columnDefinition = "datetime")
+	private LocalDateTime dataCancelamento;
+	
+	@Column(columnDefinition = "datetime")
+	private LocalDateTime dataEntrega;
+	
+	@OneToOne @JoinColumn (nullable = false, name = "pedido_formapgto_id")
+	private FormaPagamento formaPagamento;
+	
+	@OneToOne @JoinColumn (nullable = false, name = "pedido_restaurante_id")
+	private Restaurante  restaurante;
+	
+	@OneToOne @JoinColumn (nullable = false, name = "pedido_usuario_id")
+	private Usuario cliente;
+	
+
+		
+	
+	@Embedded  // vai incorporar no BD as informações da classe endereço 
+	private Endereco enderecoEntrega;
+	
+	
+}
