@@ -45,7 +45,7 @@ public class Restaurante {
 
 //	@NotNull  // <- BEAN VALIDATION
 //	@NotEmpty
-	@NotBlank
+	@NotBlank ( message = "O campo nome é obrigatório!")
 	private String nome;
 
 //	@DecimalMin("0")
