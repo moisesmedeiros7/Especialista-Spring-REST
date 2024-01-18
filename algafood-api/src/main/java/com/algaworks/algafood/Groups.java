@@ -2,6 +2,8 @@ package com.algaworks.algafood;
 
 public interface Groups {
 
-	public interface Cadastrorestaurante{}
+	public interface CozinhaId{}
+	
+	public interface EstadoId{}
 	
 }
