@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,40 +29,64 @@ import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-	private static final String MSG_ERRO_GENERICA_USUARIO_FINAL = "Ocorreu um erro interno inesperado no sistema. "
-	        + "Tente novamente e se o problema persistir, entre em contato "
-	        + "com o administrador do sistema.";
+	public static final String MSG_ERRO_GENERICA_USUARIO_FINAL
+		= "Ocorreu um erro interno inesperado no sistema. Tente novamente e se "
+				+ "o problema persistir, entre em contato com o administrador do sistema.";
+	
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
-	    HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;		
-	    ProblemType problemType = ProblemType.ERRO_DE_SISTEMA;
-	    String detail = MSG_ERRO_GENERICA_USUARIO_FINAL;
-
-	    // Importante colocar o printStackTrace (pelo menos por enquanto, que não estamos
-	    // fazendo logging) para mostrar a stacktrace no console
-	    // Se não fizer isso, você não vai ver a stacktrace de exceptions que seriam importantes
-	    // para você durante, especialmente na fase de desenvolvimento
-	    ex.printStackTrace();
+	    ProblemType problemType = ProblemType.DADOS_INVALIDOS;
+	    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+	    
+	    BindingResult bindingResult = ex.getBindingResult();
+	    
+	    List<Problem.Field> problemFields = bindingResult.getFieldErrors().stream()
+	    		.map(fieldError -> Problem.Field.builder()
+	    				.name(fieldError.getField())
+	    				.userMessage(fieldError.getDefaultMessage())
+	    				.build())
+	    		.collect(Collectors.toList());
 	    
 	    Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
-	    		.build();
+	        .userMessage(detail)
+	        .fields(problemFields)
+	        .build();
+	    
+	    return handleExceptionInternal(ex, problem, headers, status, request);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;		
+		ProblemType problemType = ProblemType.ERRO_DE_SISTEMA;
+		String detail = MSG_ERRO_GENERICA_USUARIO_FINAL;
 
-	    return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
-	}  
-	
-	
-	// 1. MethodArgumentTypeMismatchException é um subtipo de TypeMismatchException
+		ex.printStackTrace();
+		
+		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
+				.build();
 
-	// 2. ResponseEntityExceptionHandler já trata TypeMismatchException de forma mais abrangente
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
 	
-	// 3. Então, especializamos o método handleTypeMismatch e verificamos se a exception
-	//    é uma instância de MethodArgumentTypeMismatchException
+	@Override
+	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, 
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		
+		ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
+		String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.", 
+				ex.getRequestURL());
+		
+		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.build();
+		
+		return handleExceptionInternal(ex, problem, headers, status, request);
+	}
 	
-	// 4. Se for, chamamos um método especialista em tratar esse tipo de exception
-	
-	// 5. Poderíamos fazer tudo dentro de handleTypeMismatch, mas preferi separar em outro método
 	@Override
 	protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
@@ -85,7 +110,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -106,34 +131,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);
 	}
-	
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		
-		ProblemType problemType = ProblemType.DADOS_INVALIDOS;
-		String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
-		
-		Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
-				.build();
-		
-		return handleExceptionInternal(ex, problem, headers, status, request);
-	}
-		
-		
-
 	
 	private ResponseEntity<Object> handlePropertyBinding(PropertyBindingException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-	
-		// Criei o método joinPath para reaproveitar em todos os métodos que precisam
-		// concatenar os nomes das propriedades (separando por ".")
+		
 		String path = joinPath(ex.getPath());
 		
 		ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
@@ -173,27 +179,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
+				.userMessage(detail)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
-	
-	@Override
-	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, 
-	        HttpHeaders headers, HttpStatus status, WebRequest request) {
-	    
-	    ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
-	    String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.", 
-	            ex.getRequestURL());
-	    
-	    Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
-	    		.build();
-	    
-	    return handleExceptionInternal(ex, problem, headers, status, request);
-	}         
-	
 	
 	@ExceptionHandler(EntidadeEmUsoException.class)
 	public ResponseEntity<?> handleEntidadeEmUso(EntidadeEmUsoException ex, WebRequest request) {
@@ -217,7 +207,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-	    		.userMessage(detail)
+				.userMessage(detail)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
@@ -255,7 +245,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			.type(problemType.getUri())
 			.title(problemType.getTitle())
 			.detail(detail);
-			
 	}
 
 	private String joinPath(List<Reference> references) {

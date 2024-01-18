@@ -17,11 +17,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.algaworks.algafood.Groups;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -37,13 +41,19 @@ public class Restaurante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull  // <- BEAN VALIDATION
+//	@NotNull  // <- BEAN VALIDATION
+//	@NotEmpty
+	@NotBlank(groups = Groups.Cadastrorestaurante.class)
 	private String nome;
 
+//	@DecimalMin("0")
+	@PositiveOrZero(groups = Groups.Cadastrorestaurante.class)
 	@Column(name = "taxa_frete")
 	private BigDecimal taxaFrete;
 
 //	@JsonIgnore
+	@Valid // <-validar as propriedades de cozinha
+	@NotNull(groups = Groups.Cadastrorestaurante.class)
 	@ManyToOne // (fetch = FetchType.LAZY) // <- Pra evitar o carregamento de entidade sem uso.
 	@JoinColumn (name="cozinha_id", nullable = false)
 	private Cozinha cozinha;
