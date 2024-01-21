@@ -1,0 +1,96 @@
+package com.algaworks.algafood.domain.model;
+
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.algaworks.algafood.core.validation.Groups;
+import com.algaworks.algafood.core.validation.ValorZeroIncluiDescricao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@ValorZeroIncluiDescricao (valorField = "taxaFrete",
+	descricaoField = "nome", descricaoObrigatoria = "Frete Grátis")
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+public class Restaurante {
+
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+//	@NotNull  // <- BEAN VALIDATION
+//	@NotEmpty
+	@NotBlank
+	private String nome;
+
+//	@DecimalMin("0")
+//	@Multiplo(numero = 5)	
+	@NotNull
+	@PositiveOrZero
+	@Column(name = "taxa_frete", nullable = false)
+	private BigDecimal taxaFrete;
+
+//	@JsonIgnore
+	@Valid // <-validar as propriedades de cozinha
+	@ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
+	@NotNull
+	@ManyToOne // (fetch = FetchType.LAZY) // <- Pra evitar o carregamento de entidade sem uso.
+	@JoinColumn (name="cozinha_id", nullable = false)
+	private Cozinha cozinha;
+	
+	@JsonIgnore 
+	@CreationTimestamp  //cria automaticamente o datetime na CRIAÇÃO da entidade
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime dataCadastro;
+	
+	@JsonIgnore
+	@UpdateTimestamp  //cria automaticamente o datetime na ATUALIZAÇÃO da entidade
+	@Column(nullable = false, columnDefinition = "datetime")
+	private LocalDateTime dataAtualizacao;
+	
+	@JsonIgnore
+	@Embedded  // vai incorporar no BD as informações da classe endereço 
+	private Endereco endereco;  // 6.4. Mapeando classes incorporáveis com @Embedded e @Embeddable
+	
+	@JsonIgnore
+	@ManyToMany  (fetch = FetchType.LAZY) // Pra evitar o carregamento de entidade sem uso.
+	@JoinTable(name = "restaurante_forma_pagamento",             // <- nome da tabela criada
+			joinColumns = @JoinColumn(name = "restaurante_id"),   // <- nome do ID referência de restaurante
+			inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))  // <- nome do ID referência de forma_pagamento
+	private List<FormaPagamento> formasPagamento = new ArrayList<>();
+
+	@JsonIgnore 
+	@OneToMany (mappedBy = "restaurante")
+	List<Produto> produtos = new ArrayList<>();
+	
+}
