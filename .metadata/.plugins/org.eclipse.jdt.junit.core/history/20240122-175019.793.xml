@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AlgafoodApiApplicationTests.contextLoads" project="algafood-api" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.algaworks.algafood.AlgafoodApiApplicationTests" time="0.242" displayname="AlgafoodApiApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.AlgafoodApiApplicationTests]">
+    <testcase name="contextLoads" classname="com.algaworks.algafood.AlgafoodApiApplicationTests" time="0.242" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.AlgafoodApiApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

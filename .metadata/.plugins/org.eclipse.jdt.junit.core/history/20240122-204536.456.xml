@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CadastroCozinhaIntegrationTests" project="algafood-api" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.751" displayname="CadastroCozinhaIntegrationTests" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]">
+    <testcase name="deveFalhar_QuandoExcluirCozinhaInexistente" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.355" displayname="deveFalhar_QuandoExcluirCozinhaInexistente()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:deveFalhar_QuandoExcluirCozinhaInexistente()]"/>
+    <testcase name="deveFalhar_QuandoExcluirCozinhaEmUso" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.289" displayname="deveFalhar_QuandoExcluirCozinhaEmUso()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:deveFalhar_QuandoExcluirCozinhaEmUso()]"/>
+    <testcase name="testarCadastroCozinhaComSucesso" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.065" displayname="testarCadastroCozinhaComSucesso()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:testarCadastroCozinhaComSucesso()]"/>
+    <testcase name="testarCadastroCozinhaSemNome" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.032" displayname="testarCadastroCozinhaSemNome()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:testarCadastroCozinhaSemNome()]"/>
+  </testsuite>
+</testrun>

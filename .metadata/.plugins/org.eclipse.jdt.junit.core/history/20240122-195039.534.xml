@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CadastroCozinhaIntegrationTests" project="algafood-api" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.339" displayname="CadastroCozinhaIntegrationTests" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]">
+    <testcase name="testarCadastroCozinhaComSucesso" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.306" displayname="testarCadastroCozinhaComSucesso()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:testarCadastroCozinhaComSucesso()]"/>
+    <testcase name="testarCadastroCozinhaSemNome" classname="com.algaworks.algafood.CadastroCozinhaIntegrationTests" time="0.031" displayname="testarCadastroCozinhaSemNome()" uniqueid="[engine:junit-jupiter]/[class:com.algaworks.algafood.CadastroCozinhaIntegrationTests]/[method:testarCadastroCozinhaSemNome()]"/>
+  </testsuite>
+</testrun>
