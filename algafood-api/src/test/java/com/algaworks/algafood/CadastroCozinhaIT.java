@@ -1,6 +1,5 @@
 package com.algaworks.algafood;
 
-import org.flywaydb.core.Flyway;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,19 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.TestPropertySource;
+
+import com.algaworks.algafood.domain.model.Cozinha;
+import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.util.DatabaseCleaner;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 
 @SpringBootTest (webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource("/application-test.properties")
 public class CadastroCozinhaIT {
 	
-	@Autowired
-	private Flyway flyway;
 
 	@LocalServerPort
 	private int port;
+	
+	@Autowired
+	private DatabaseCleaner databaseCleaner;
+	
+	@Autowired
+	private CozinhaRepository cozinhaRepository;
 	
 	@BeforeEach  // método vai rodar antes de cada método de teste
 	public void setUp () {
@@ -28,7 +37,9 @@ public class CadastroCozinhaIT {
 		RestAssured.port = port;
 		RestAssured.basePath = "/cozinhas";
 		
-		flyway.migrate(); // executando o afterMifrate.sql pra "resetar" o BD a cada teste
+		databaseCleaner.clearTables();
+		prepararDados();
+		
 	}
 	
 	@Test
@@ -43,15 +54,15 @@ public class CadastroCozinhaIT {
 	}
 	
 	@Test
-	public void deveConter4Cozinhas_QuandoConsultarCozinhas() {
+	public void deveConter2Cozinhas_QuandoConsultarCozinhas() {
 				
 		RestAssured.given()
 			.accept(ContentType.JSON)
 		.when()
 			.get()
 		.then()
-			.body("", Matchers.hasSize(4))
-			.body("nome", Matchers.hasItems("Indiana", "Tailandesa") );
+			.body("", Matchers.hasSize(2))
+			.body("nome", Matchers.hasItems("Americana", "Tailandesa") );
 	}
 	
 	@Test
@@ -66,13 +77,23 @@ public class CadastroCozinhaIT {
 			.statusCode(HttpStatus.CREATED.value());
 	}
 	
+	private void prepararDados() {
+		Cozinha cozinha1 = new Cozinha();
+		cozinha1.setNome("Tailandesa");
+		cozinhaRepository.save(cozinha1);
+
+		Cozinha cozinha2 = new Cozinha();
+		cozinha2.setNome("Americana");
+		cozinhaRepository.save(cozinha2);
+	}
+	
 	
 }
 
 
+/*
 
-
-/*  testes de integração
+//  testes de integração
  
  @SpringBootTest
 public class CadastroCozinhaIT {
