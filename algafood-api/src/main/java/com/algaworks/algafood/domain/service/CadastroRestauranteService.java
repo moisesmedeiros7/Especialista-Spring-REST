@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algaworks.algafood.domain.exception.RestauranteNaoEncontradoException;
@@ -29,7 +30,7 @@ public class CadastroRestauranteService {
 			.orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
 	}
 	
-	
+	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
 		
 		Long cozinhaId = restaurante.getCozinha().getId();
@@ -39,6 +40,7 @@ public class CadastroRestauranteService {
 		return restauranteRepository.save(restaurante);
 	}
 	
+	@Transactional
 	public void excluir (Long restauranteId) {
 		try {
 			restauranteRepository.deleteById(restauranteId);
