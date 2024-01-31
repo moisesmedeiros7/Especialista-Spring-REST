@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.CustomJpaRepository"/>
-    <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.EnableJpaRepositories"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.infrastructure.repository.CustomJpaRepositoryImpl"/>
-    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
-    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.FormaPagamento"/>
     <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Endereco"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Usuario"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Restaurante"/>
     <fullyQualifiedTypeName name="javax.persistence.Column"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroCozinhaService"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cozinha"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.dao.EmptyResultDataAccessException"/>
     <fullyQualifiedTypeName name="org.springframework.dao.DataIntegrityViolationException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
@@ -28,7 +15,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroRestauranteService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Estado"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroCidadeService"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroEstadoService"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException"/>
@@ -36,10 +22,8 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Throwable"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.NegocioException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.CidadeNaoEncontradaException"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.RestauranteNaoEncontradoException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.EntidadeEmUsoException"/>
     <fullyQualifiedTypeName name="org.springframework.web.method.annotation.MethodArgumentTypeMismatchException"/>
     <fullyQualifiedTypeName name="org.hibernate.TypeMismatchException"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
@@ -48,7 +32,6 @@
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="org.springframework.context.i18n.LocaleContextHolder"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="org.springframework.context.MessageSource"/>
     <fullyQualifiedTypeName name="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
@@ -60,4 +43,21 @@
     <fullyQualifiedTypeName name="org.springframework.validation.SmartValidator"/>
     <fullyQualifiedTypeName name="org.springframework.validation.BeanPropertyBindingResult"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.core.validation.ValidacaoException"/>
+    <fullyQualifiedTypeName name="javax.validation.ConstraintViolationException"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroCozinhaService"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.EntidadeEmUsoException"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cozinha"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.mixin.CozinhaMixin"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Restaurante"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Estado"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cidade"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.mixin.CidadeMixin"/>
 </qualifiedTypeNameHistroy>
