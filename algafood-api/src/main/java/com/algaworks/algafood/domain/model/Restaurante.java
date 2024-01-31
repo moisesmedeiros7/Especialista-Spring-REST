@@ -2,7 +2,7 @@ package com.algaworks.algafood.domain.model;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,11 +70,11 @@ public class Restaurante {
  
 	@CreationTimestamp  //cria automaticamente o datetime na CRIAÇÃO da entidade
 	@Column(nullable = false, columnDefinition = "datetime")
-	private LocalDateTime dataCadastro;
+	private OffsetDateTime dataCadastro;
 	
 	@UpdateTimestamp  //cria automaticamente o datetime na ATUALIZAÇÃO da entidade
 	@Column(nullable = false, columnDefinition = "datetime")
-	private LocalDateTime dataAtualizacao;
+	private OffsetDateTime dataAtualizacao;
 	
 	@Embedded  // vai incorporar no BD as informações da classe endereço 
 	private Endereco endereco;  // 6.4. Mapeando classes incorporáveis com @Embedded e @Embeddable
