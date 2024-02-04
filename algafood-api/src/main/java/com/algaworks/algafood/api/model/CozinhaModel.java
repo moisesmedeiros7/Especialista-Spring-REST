@@ -10,3 +10,9 @@ public class CozinhaModel {
 	private Long id;
 	private String nome;
 }
+
+/*
+@JsonIgnore
+@OneToMany(mappedBy = "cozinha")
+private List<Restaurante> restaurantes = new ArrayList<>();
+*/
