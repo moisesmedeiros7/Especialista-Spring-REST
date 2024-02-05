@@ -29,7 +29,7 @@ public class CadastroCozinhaService {
 	public void excluir(Long cozinhaId) {
 		try {
 			cozinhaRepository.deleteById(cozinhaId);
-			cozinhaRepository.flush(); //forçar operações do BD p/ não pular exceção
+			
 		} catch (EmptyResultDataAccessException e) {
 			throw new CozinhaNaoEncontradaException(cozinhaId);
 		
