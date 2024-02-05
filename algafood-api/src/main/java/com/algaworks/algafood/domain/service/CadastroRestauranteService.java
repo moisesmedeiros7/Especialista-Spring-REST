@@ -53,5 +53,18 @@ public class CadastroRestauranteService {
 		 
 	}
 	
+	@Transactional
+	public void ativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+//		restauranteAtual.setAtivo(true); // não precisa fazer um save | JPA compreende
+		restauranteAtual.ativar();
+	}
+	
+	@Transactional
+	public void inativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+//		restauranteAtual.setAtivo(false); // não precisa fazer um save | JPA compreende
+		restauranteAtual.inativar();
+	}
 	
 }

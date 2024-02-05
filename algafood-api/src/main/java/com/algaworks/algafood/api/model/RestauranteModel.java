@@ -13,14 +13,7 @@ public class RestauranteModel {
 	private String nome;
 	private BigDecimal taxaFrete;
 	private CozinhaModel cozinha;
-
-	/*
-	 * {
-	 * "id": 1,
-	 * "cozinha": {
-	 * 	"id":2,
-	 * 	"nome" : "Japonesa"
-	 * }
-	 */
+	private Boolean ativo;
+	
 
 }

@@ -79,6 +79,8 @@ public class Restaurante {
 	@Embedded  // vai incorporar no BD as informações da classe endereço 
 	private Endereco endereco;  // 6.4. Mapeando classes incorporáveis com @Embedded e @Embeddable
 	
+	private Boolean ativo = Boolean.TRUE;
+	
 	@ManyToMany  (fetch = FetchType.LAZY) // Pra evitar o carregamento de entidade sem uso.
 	@JoinTable(name = "restaurante_forma_pagamento",             // <- nome da tabela criada
 			joinColumns = @JoinColumn(name = "restaurante_id"),   // <- nome do ID referência de restaurante
@@ -88,4 +90,12 @@ public class Restaurante {
 	@OneToMany (mappedBy = "restaurante")
 	List<Produto> produtos = new ArrayList<>();
 	
+	public void ativar() {
+		setAtivo(true);
+	}
+	
+	public void inativar() {
+		setAtivo(false);
+	}
+
 }

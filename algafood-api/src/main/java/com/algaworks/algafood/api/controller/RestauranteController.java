@@ -94,6 +94,21 @@ public class RestauranteController {
 		}
 	}
 	
+	// PUT /restaurantes/{id}/ativo
+	@PutMapping("/{restauranteId}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void ativar (@PathVariable Long restauranteId) {
+		cadastroRestaurante.ativar(restauranteId);
+	}
+	
+	// DELETE /restaurantes/{id}/ativo
+	@DeleteMapping("/{restauranteId}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void inativar (@PathVariable Long restauranteId) {
+		cadastroRestaurante.inativar(restauranteId);
+	}
+	
+	
 	/*
 	@PatchMapping("/{restauranteId}")
 	public Restaurante atualizarParcial(@PathVariable Long restauranteId,
