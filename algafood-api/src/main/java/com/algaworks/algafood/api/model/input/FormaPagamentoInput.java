@@ -10,5 +10,5 @@ import lombok.Setter;
 public class FormaPagamentoInput {
 
 	@NotBlank
-	private String nome;
+	private String descricao;
 }
