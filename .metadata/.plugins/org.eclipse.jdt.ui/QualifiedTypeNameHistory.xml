@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.RestauranteNaoEncontradoException"/>
-    <fullyQualifiedTypeName name="org.springframework.web.method.annotation.MethodArgumentTypeMismatchException"/>
-    <fullyQualifiedTypeName name="org.hibernate.TypeMismatchException"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.NoHandlerFoundException"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="org.springframework.context.i18n.LocaleContextHolder"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
@@ -29,7 +22,6 @@
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Restaurante"/>
     <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.mixin.CidadeMixin"/>
@@ -38,8 +30,6 @@
     <fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.CozinhaModelAssembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.CozinhaInputDisassembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cozinha"/>
@@ -60,4 +50,14 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.CidadeModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.EstadoIdInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Estado"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.formaPagamentoNaoEncontradaException"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.FormaPagamentoRepository"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.FormaPagamentoModelAssembler"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.FormaPagamento"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.FormaPagamentoModel"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.FormaPagamentoInput"/>
 </qualifiedTypeNameHistroy>
