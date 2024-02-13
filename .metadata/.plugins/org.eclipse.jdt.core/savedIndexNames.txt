@@ -24,7 +24,6 @@ INDEX VERSION 1.134+/home/moises/Documents/workspace-spring-tool-suite-4-4.20.1.
 1721211960.index
 2863280956.index
 4044152959.index
-4095146488.index
 3763554272.index
 113740208.index
 1916831931.index
