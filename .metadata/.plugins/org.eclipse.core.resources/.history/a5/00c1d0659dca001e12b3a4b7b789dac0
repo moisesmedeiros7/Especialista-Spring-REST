@@ -38,7 +38,7 @@ public class CadastroUsuarioService {
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
 		
-		usuarioRepository.detach(usuario);// 12.11.fazer a Entidade não ser gerenciada pelo JPA pra n salvar antes de buscarOuFalhar
+		usuarioRepository.detach(usuario);// 12.11.fazer a Entidade não ser gerenciada pelo JPA pra dar certo att
 
 		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 
