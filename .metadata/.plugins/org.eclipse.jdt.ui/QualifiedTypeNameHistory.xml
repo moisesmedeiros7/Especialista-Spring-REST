@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="org.springframework.context.i18n.LocaleContextHolder"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
-    <fullyQualifiedTypeName name="org.springframework.context.MessageSource"/>
-    <fullyQualifiedTypeName name="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.core.validation.Multiplo"/>
     <fullyQualifiedTypeName name="java.lang.annotation.ElementType"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.core.validation.ValorZeroIncluiDescricao"/>
@@ -35,7 +30,6 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cozinha"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.CozinhaInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.CozinhaModel"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cidade"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.EstadoInputDisassembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.EstadoModelAssembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.EstadoInput"/>
@@ -60,4 +54,10 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.FormaPagamento"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.FormaPagamentoModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.FormaPagamentoInput"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cidade"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.GrupoRepository"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.GrupoNaoEncontradoException"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Grupo"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.GrupoModel"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.GrupoInput"/>
 </qualifiedTypeNameHistroy>

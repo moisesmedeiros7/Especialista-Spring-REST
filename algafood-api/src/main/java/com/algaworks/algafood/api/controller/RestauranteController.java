@@ -20,6 +20,7 @@ import com.algaworks.algafood.api.assembler.RestauranteInputDisassembler;
 import com.algaworks.algafood.api.assembler.RestauranteModelAssembler;
 import com.algaworks.algafood.api.model.RestauranteModel;
 import com.algaworks.algafood.api.model.input.RestauranteInput;
+import com.algaworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.model.Restaurante;
@@ -59,16 +60,15 @@ public class RestauranteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public RestauranteModel adicionar(
-			@RequestBody @Valid RestauranteInput restauranteInput) {
+	public RestauranteModel adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
 		try {
-			
 			Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
-			return restauranteModelAssembler.toModel( cadastroRestaurante.salvar(restaurante) );
-		} catch (CozinhaNaoEncontradaException e) {
+			
+			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restaurante));
+		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
-	}
+	}	
 	
 	@DeleteMapping("/{restauranteId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -89,7 +89,7 @@ public class RestauranteController {
 					"id", "formasPagamento", "endereco", "dataCadastro", "produtos");   */
 
 			return restauranteModelAssembler.toModel( cadastroRestaurante.salvar(restauranteAtual));
-		} catch (CozinhaNaoEncontradaException e) {
+		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
 	}
