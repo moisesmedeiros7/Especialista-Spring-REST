@@ -1,0 +1,9 @@
+package com.algaworks.algafood.api.model.input;
+
+@Setter
+@Getter
+public class UsuarioComSenhaInput extends UsuarioInput {
+
+    @NotBlank
+    private String senha;
+}
