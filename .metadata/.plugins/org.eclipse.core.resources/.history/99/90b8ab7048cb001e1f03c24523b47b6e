@@ -102,15 +102,6 @@ public class Restaurante {
 		setAtivo(false);
 	}
 	
-	public void abrir () {
-		setAberto(true);
-	}
-	
-	public void fechar () {
-		setAberto(false);
-	}
-	
-	
 	public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormasPagamento().remove(formaPagamento);
 	}

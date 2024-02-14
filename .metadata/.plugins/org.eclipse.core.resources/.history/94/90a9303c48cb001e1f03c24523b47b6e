@@ -83,8 +83,6 @@ public class Restaurante {
 	
 	private Boolean ativo = Boolean.TRUE;
 	
-	private Boolean aberto = Boolean.FALSE;
-	
 	@ManyToMany  (fetch = FetchType.LAZY) // Pra evitar o carregamento de entidade sem uso.
 	@JoinTable(name = "restaurante_forma_pagamento",             // <- nome da tabela criada
 			joinColumns = @JoinColumn(name = "restaurante_id"),   // <- nome do ID referência de restaurante
@@ -101,15 +99,6 @@ public class Restaurante {
 	public void inativar() {
 		setAtivo(false);
 	}
-	
-	public void abrir () {
-		setAberto(true);
-	}
-	
-	public void fechar () {
-		setAberto(false);
-	}
-	
 	
 	public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormasPagamento().remove(formaPagamento);

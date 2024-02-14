@@ -114,12 +114,6 @@ public class RestauranteController {
 		cadastroRestaurante.abrir(restauranteId);
 	}
 	
-	@PutMapping("/{restauranteId}/fechamento")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void fechar(@PathVariable Long restauranteId) {
-		cadastroRestaurante.fechar(restauranteId);
-	}
-	
 	
 	/*
 	@PatchMapping("/{restauranteId}")
