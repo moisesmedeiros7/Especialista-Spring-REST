@@ -1,5 +1,5 @@
 package com.algaworks.algafood.infrastructure.repository;
-
+/*
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,3 +41,4 @@ public class PermissaoRepositoryImpl implements PermissaoRepository {
 	}
 
 }
+*/

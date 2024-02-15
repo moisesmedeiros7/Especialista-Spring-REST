@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.EstadoInputDisassembler"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.EstadoModelAssembler"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.EstadoInput"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.EstadoModel"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.controller.CidadeController"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.CidadeInputDisassembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.CidadeModelAssembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.CidadeInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.RestauranteModel"/>
@@ -13,8 +7,6 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.CidadeModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.EstadoIdInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Estado"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.formaPagamentoNaoEncontradaException"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.FormaPagamentoRepository"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.FormaPagamentoModelAssembler"/>
@@ -23,7 +15,6 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cidade"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.GrupoRepository"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.GrupoNaoEncontradoException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Grupo"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.GrupoModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.GrupoInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.UsuarioNaoEncontradoException"/>
@@ -40,24 +31,33 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Usuario"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroFormaPagamentoService"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.FormaPagamento"/>
-    <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="java.util.HashSet"/>
-    <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.ProdutoNaoEncontradoException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.ProdutoInput"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.PositiveOrZero"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroProdutoService"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.ProdutoModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.ProdutoModelAssembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Produto"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroRestauranteService"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.ProdutoRepository"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.ProdutoInput"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.ProdutoModel"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.ProdutoInputDisassembler"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Restaurante"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseStatus"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.PermissaoRepository"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Grupo"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Permissao"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Restaurante"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.ProdutoRepository"/>
 </qualifiedTypeNameHistroy>

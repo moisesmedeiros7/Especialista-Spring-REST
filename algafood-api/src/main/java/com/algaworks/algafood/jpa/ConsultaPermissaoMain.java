@@ -1,5 +1,5 @@
 package com.algaworks.algafood.jpa;
-
+/*
 import java.util.List;
 
 import org.springframework.boot.WebApplicationType;
@@ -26,3 +26,4 @@ public class ConsultaPermissaoMain {
 	}
 
 }
+*/
