@@ -1,0 +1,22 @@
+package com.algaworks.algafood.api.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.algaworks.algafood.domain.service.CadastroGrupoService;
+import com.algaworks.algafood.domain.service.CadastroUsuarioService;
+
+@RestController
+@RequestMapping(value = "/usuarios/{usuarioId}/grupos")
+public class UsuarioGrupoController {
+	
+	@Autowired
+	private CadastroUsuarioService cadastroUsuario;
+	
+	@Autowired
+	private CadastroGrupoService cadastroGrupo;
+	
+	
+
+}

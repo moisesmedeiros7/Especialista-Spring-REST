@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.CidadeModelAssembler"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.CidadeInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.RestauranteModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.RestauranteModelAssembler"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.CidadeModel"/>
@@ -15,7 +13,6 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Cidade"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.GrupoRepository"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.GrupoNaoEncontradoException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.GrupoModel"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.GrupoInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.UsuarioNaoEncontradoException"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.Email"/>
@@ -28,10 +25,8 @@
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.UsuarioComSenhaInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.input.SenhaInput"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.NegocioException"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Usuario"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.service.CadastroFormaPagamentoService"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.FormaPagamento"/>
-    <fullyQualifiedTypeName name="java.util.HashSet"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.exception.ProdutoNaoEncontradoException"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
@@ -50,14 +45,19 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseStatus"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.repository.PermissaoRepository"/>
-    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Grupo"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
-    <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Permissao"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Usuario"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.domain.model.Grupo"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.assembler.GrupoModelAssembler"/>
+    <fullyQualifiedTypeName name="com.algaworks.algafood.api.model.GrupoModel"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

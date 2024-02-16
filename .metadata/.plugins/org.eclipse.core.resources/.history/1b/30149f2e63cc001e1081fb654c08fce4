@@ -74,4 +74,11 @@ public class CadastroUsuarioService {
 		usuario.setSenha(novaSenha);
 	}
 	
+	@Transactional
+	public void associarGrupo(Long usuarioId, Long grupoId) {
+		Usuario usuario = buscarOuFalhar(usuarioId);
+		
+		return null;
+	}
+
 }
