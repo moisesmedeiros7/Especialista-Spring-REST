@@ -121,13 +121,4 @@ public class CadastroRestauranteService {
 	    restaurante.adicionarResponsavel(usuario);
 	}
 	
-	@Transactional
-	public void desassociarResponsavel(Long restauranteId, Long usuarioId) {
-	    
-		Usuario usuario = cadastroUsuario.buscarOuFalhar(usuarioId);
-	    Restaurante restaurante = buscarOuFalhar(restauranteId);
-	    
-	    restaurante.removerResponsavel(usuario);
-	}
-	
 }

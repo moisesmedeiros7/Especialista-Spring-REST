@@ -95,18 +95,10 @@ public class Restaurante {
 	List<Produto> produtos = new ArrayList<>();
 	
 	@ManyToMany (fetch = FetchType.LAZY)
-	@JoinTable (name= "restaurante_usuario_responsavel",
-		joinColumns = @JoinColumn(name = "restaurante_id"),   
-		inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	@JoinTable (name= "restaurante_usuario_responsavel"),
+	joinColumns = @JoinColumn(name = "restaurante_id"),   // <- nome do ID referência de restaurante
+	inverseJoinColumns = @JoinColumn(name = "usuario_id")),
     private Set<Usuario> responsaveis = new HashSet<>();
-	
-	public void adicionarResponsavel (Usuario usuario) {
-		responsaveis.add(usuario);
-	}
-	
-	public void removerResponsavel (Usuario usuario) {
-		responsaveis.remove(usuario);
-	}
 	
 	public void ativar() {
 		setAtivo(true);
