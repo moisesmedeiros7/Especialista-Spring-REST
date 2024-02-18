@@ -1,0 +1,57 @@
+package com.algaworks.algafood.domain.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.algaworks.algafood.domain.exception.NegocioException;
+import com.algaworks.algafood.domain.exception.PedidoNaoEncontradoException;
+import com.algaworks.algafood.domain.model.FormaPagamento;
+import com.algaworks.algafood.domain.model.Pedido;
+import com.algaworks.algafood.domain.model.Restaurante;
+import com.algaworks.algafood.domain.model.Usuario;
+import com.algaworks.algafood.domain.repository.PedidoRepository;
+
+@Service
+public class EmissaoPedidoService {
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+    
+    @Autowired
+	private CadastroRestauranteService cadastroRestaurante;
+    
+    @Autowired
+	private CadastroFormaPagamentoService cadastroFormaPagamento;
+    
+    public Pedido buscarOuFalhar(Long pedidoId) {
+        return pedidoRepository.findById(pedidoId)
+            .orElseThrow(() -> new PedidoNaoEncontradoException(pedidoId));
+    }
+    
+    @Transactional
+    public Pedido adicionar(@RequestBody Pedido pedido) {
+    	Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(pedido.getRestaurante().getId());
+    	FormaPagamento formaPagamento = cadastroFormaPagamento.buscarOuFalhar(pedido.getFormaPagamento().getId());
+    	
+    	pedido.definirFrete();
+    	pedido.calcularValorTotal();
+    	pedido.atribuirPedidoAosItens();
+    	
+    	if (pedido.getItens().isEmpty()) {
+    		throw new NegocioException("É necessário que o pedido tenha pelo menos um item"); 
+    	}
+    	
+    	if (restaurante.naoAceitaFormaPagamento(pedido.getFormaPagamento()) ){
+    		throw new NegocioException(String.format( "O restaurante s% não aceita a forma de pagamento s%",
+    			restaurante.getNome(), pedido.getFormaPagamento().getDescricao() )); 
+    	}
+    	// TODO posteriormente pegar usuário logado
+    	Usuario usuario = new Usuario();
+    	usuario.setId(1L);
+    	pedido.setCliente(usuario);
+    	
+    	return pedido;
+    }
+} 
