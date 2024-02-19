@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.algaworks.algafood.domain.exception.NegocioException;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -65,6 +67,14 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // 12.21 07min
     private List<ItemPedido> itens = new ArrayList<>();
     
+    public void definirFrete() {
+        setTaxaFrete(getRestaurante().getTaxaFrete());
+    }
+
+    public void atribuirPedidoAosItens() {
+        getItens().forEach(item -> item.setPedido(this));
+    }
+    
     public void calcularValorTotal() {
 		getItens().forEach(ItemPedido::calcularPrecoTotal);
 		
@@ -75,14 +85,30 @@ public class Pedido {
 		this.valorTotal = this.subtotal.add(this.taxaFrete);
 	}
     
-  
-    
-    public void definirFrete() {
-        setTaxaFrete(getRestaurante().getTaxaFrete());
-    }
-
-    public void atribuirPedidoAosItens() {
-        getItens().forEach(item -> item.setPedido(this));
-    }
+    public void confirmar() {
+		setStatus(StatusPedido.CONFIRMADO);
+		setDataConfirmacao(OffsetDateTime.now());
+	}
+	
+	public void entregar() {
+		setStatus(StatusPedido.ENTREGUE);
+		setDataEntrega(OffsetDateTime.now());
+	}
+	
+	public void cancelar() {
+		setStatus(StatusPedido.CANCELADO);
+		setDataCancelamento(OffsetDateTime.now());
+	}
+	
+	private void setStatus(StatusPedido novoStatus) {
+		if (getStatus().naoPodeAlterarPara(novoStatus)) {
+			throw new NegocioException(
+					String.format("Status do pedido %d não pode ser alterado de %s para %s",
+							getId(), getStatus().getDescricao(), 
+							novoStatus.getDescricao()));
+		}
+		
+		this.status = novoStatus;
+	}
 
 }
