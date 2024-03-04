@@ -38,6 +38,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/moises/Área de Trabalho/novidades-java"/>
 			<item value="/home/moises/Documentos/Code/curso-especialista-spring-rest-master/03.15-conhecendo-e-usando-o-lombok/algafood-api"/>
 			<item value="/home/moises/Documentos/Code/curso-especialista-spring-rest-master/03.15-conhecendo-e-usando-o-lombok"/>
 			<item value="/home/moises/Documentos/Code/algafood-api"/>
