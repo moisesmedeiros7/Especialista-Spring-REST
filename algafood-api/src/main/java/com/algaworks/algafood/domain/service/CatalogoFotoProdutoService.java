@@ -52,7 +52,21 @@ public class CatalogoFotoProdutoService {
 	
 	public FotoProduto buscarOuFalhar(Long restauranteId, Long produtoId) {
 		return produtoRepository.findFotoById(restauranteId, produtoId)
-				.orElseThrow (() -> new FotoProdutoNaoEncontradaException(restauranteId, produtoId));
+				.orElseThrow (() -> new FotoProdutoNaoEncontradaException(restauranteId, produtoId));	
+	
 	}
 	
+	@Transactional
+	public void excluir (Long restauranteId, Long produtoId) {
+		FotoProduto foto = buscarOuFalhar(restauranteId, produtoId);
+		
+		String nomeArquivo = foto.getNomeArquivo();
+	
+		produtoRepository.delete(foto);
+		produtoRepository.flush();
+		
+		fotoStorage.remover(nomeArquivo);
+	}
+	
+
 }
