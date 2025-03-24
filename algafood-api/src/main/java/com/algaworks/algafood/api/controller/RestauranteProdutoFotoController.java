@@ -5,9 +5,10 @@ import java.io.InputStream;
 import java.util.List;
 
 import javax.validation.Valid;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
@@ -66,6 +67,13 @@ public class RestauranteProdutoFotoController {
 		return fotoProdutoModelAssembler.toModel(fotoSalva);
 	}
 	
+	@DeleteMapping
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void excluir(@PathVariable Long restauranteId, 
+			@PathVariable Long produtoId) {
+		catalogoFotoProduto.excluir(restauranteId, produtoId);
+	}
+	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public FotoProdutoModel buscar(@PathVariable Long restauranteId, 
 			@PathVariable Long produtoId) {
@@ -75,7 +83,7 @@ public class RestauranteProdutoFotoController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<InputStreamResource> servirFoto(@PathVariable Long restauranteId, 
+	public ResponseEntity<InputStreamResource> servir(@PathVariable Long restauranteId, 
 			@PathVariable Long produtoId, @RequestHeader(name = "accept") String acceptHeader) 
 					throws HttpMediaTypeNotAcceptableException {
 		try {
@@ -105,14 +113,6 @@ public class RestauranteProdutoFotoController {
 		if (!compativel) {
 			throw new HttpMediaTypeNotAcceptableException(mediaTypesAceitas);
 		}
-	}
-	
-	@DeleteMapping
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void excluir(@PathVariable Long restauranteId, 
-			@PathVariable Long produtoId) {
-		    
-		   catalogoFotoProduto.excluir(restauranteId, produtoId);		   
 	}
 	
 }
