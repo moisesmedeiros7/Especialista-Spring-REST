@@ -21,11 +21,12 @@ public class EmailProperties {
 		
 	private Fake local = new Fake();
 	private Smtp smtp = new Smtp();
+	private Sandbox sandbox = new Sandbox(); 
 	private Impl impl = Impl.FAKE;
 		
 		public enum Impl {
 			
-			SMTP, FAKE
+			SMTP, FAKE, SANDBOX
 			
 		}
 	
@@ -41,6 +42,15 @@ public class EmailProperties {
 		public class Smtp {
 			
 			private String impl; 
+			
+		}
+		
+		@Getter
+		@Setter
+		public class Sandbox {
+			
+			private String impl; 
+			private String destinatario;
 			
 		}
 	
