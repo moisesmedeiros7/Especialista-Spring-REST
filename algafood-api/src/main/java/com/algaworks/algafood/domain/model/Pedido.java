@@ -21,65 +21,59 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
+import com.algaworks.algafood.domain.event.PedidoConfirmadoEvent;
 import com.algaworks.algafood.domain.exception.NegocioException;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
-public class Pedido {
+public class Pedido extends AbstractAggregateRoot<Pedido> {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String codigo;
-    
-    private BigDecimal subtotal;
-    private BigDecimal taxaFrete;
-    private BigDecimal valorTotal;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String codigo;
+	
+	private BigDecimal subtotal;
+	private BigDecimal taxaFrete;
+	private BigDecimal valorTotal;
 
-    @Embedded
-    private Endereco enderecoEntrega;
-    
-    @Enumerated(EnumType.STRING)
-    private StatusPedido status = StatusPedido.CRIADO;
-    
-    @CreationTimestamp
-    private OffsetDateTime dataCriacao;
+	@Embedded
+	private Endereco enderecoEntrega;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status = StatusPedido.CRIADO;
+	
+	@CreationTimestamp
+	private OffsetDateTime dataCriacao;
 
-    private OffsetDateTime dataConfirmacao;
-    private OffsetDateTime dataCancelamento;
-    private OffsetDateTime dataEntrega;
-    
-    @ManyToOne(fetch = FetchType.LAZY ) // 12.20. Otimizando a query de pedidos e retornando model resumido na listagem
-    @JoinColumn(nullable = false)
-    private FormaPagamento formaPagamento;
-    
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Restaurante restaurante;
-    
-    @ManyToOne
-    @JoinColumn(name = "usuario_cliente_id", nullable = false)
-    private Usuario cliente;
-    
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // 12.21 07min
-    private List<ItemPedido> itens = new ArrayList<>();
-    
-    public void definirFrete() {
-        setTaxaFrete(getRestaurante().getTaxaFrete());
-    }
+	private OffsetDateTime dataConfirmacao;
+	private OffsetDateTime dataCancelamento;
+	private OffsetDateTime dataEntrega;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
+	private FormaPagamento formaPagamento;
+	
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Restaurante restaurante;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_cliente_id", nullable = false)
+	private Usuario cliente;
+	
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemPedido> itens = new ArrayList<>();
 
-    public void atribuirPedidoAosItens() {
-        getItens().forEach(item -> item.setPedido(this));
-    }
-    
-    public void calcularValorTotal() {
+	public void calcularValorTotal() {
 		getItens().forEach(ItemPedido::calcularPrecoTotal);
 		
 		this.subtotal = getItens().stream()
@@ -88,10 +82,12 @@ public class Pedido {
 		
 		this.valorTotal = this.subtotal.add(this.taxaFrete);
 	}
-    
-    public void confirmar() {
+	
+	public void confirmar() {
 		setStatus(StatusPedido.CONFIRMADO);
 		setDataConfirmacao(OffsetDateTime.now());
+		
+		registerEvent(new PedidoConfirmadoEvent(this));
 	}
 	
 	public void entregar() {
@@ -114,9 +110,10 @@ public class Pedido {
 		
 		this.status = novoStatus;
 	}
-
-	@PrePersist  // método de callback do JPA
+	
+	@PrePersist
 	private void gerarCodigo() {
 		setCodigo(UUID.randomUUID().toString());
 	}
+	
 }
