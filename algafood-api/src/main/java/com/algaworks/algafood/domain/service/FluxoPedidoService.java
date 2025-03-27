@@ -21,13 +21,15 @@ public class FluxoPedidoService {
 		Pedido pedido = emissaoPedido.buscarOuFalhar(codigoPedido);
 		pedido.confirmar();
 		
-		pedidoRepository.save(pedido);
+		pedidoRepository.save(pedido); //para os events funcionarem
 	}
 	
 	@Transactional
 	public void cancelar(String codigoPedido) {
 		Pedido pedido = emissaoPedido.buscarOuFalhar(codigoPedido);
 		pedido.cancelar();
+		
+		pedidoRepository.save(pedido);
 	}
 	
 	@Transactional
